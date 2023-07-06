@@ -1,6 +1,7 @@
-package createclient
+package create_client
 
 import (
+	"fmt"
 	"time"
 
 	"github.com.br/devfullcycle/fc-ms-wallet/internal/entity"
@@ -31,20 +32,24 @@ func NewCreateClientUseCase(clientGateway gateway.ClientGateway) *CreateClientUs
 }
 
 func (uc *CreateClientUseCase) Execute(input CreateClientInputDTO) (*CreateClientOutputDTO, error) {
+	fmt.Println("Z1")
 	client, err := entity.NewClient(input.Name, input.Email)
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println("Z2")
 	err = uc.ClientGateway.Save(client)
+	fmt.Println(err)
 	if err != nil {
 		return nil, err
 	}
-	return &CreateClientOutputDTO{
+	fmt.Println("Z3")
+	output := &CreateClientOutputDTO{
 		ID:        client.ID,
 		Name:      client.Name,
 		Email:     client.Email,
 		CreatedAt: client.CreatedAt,
 		UpdatedAt: client.UpdateAt,
-	}, nil
+	}
+	return output, nil
 }
