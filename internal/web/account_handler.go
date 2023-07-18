@@ -18,8 +18,10 @@ func NewWebAccountHandler(createAccountUsecase create_account.CreateAccountUseCa
 }
 
 func (h *WebAccountHandler) CreateAccount(w http.ResponseWriter, r *http.Request) {
+
 	var dto create_account.CreateAccountInputDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
+
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return

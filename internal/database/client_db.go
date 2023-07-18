@@ -2,7 +2,6 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
 
 	"github.com.br/devfullcycle/fc-ms-wallet/internal/entity"
 )
@@ -37,17 +36,17 @@ func (c *ClientDB) Get(id string) (*entity.Client, error) {
 }
 
 func (c *ClientDB) Save(client *entity.Client) error {
-	fmt.Println("W1")
+
 	stmt, err := c.DB.Prepare("INSERT INTO clients(id, name, email, created_at) VALUES (?, ?, ?, ?)")
-	fmt.Println(err)
+
 	if err != nil {
 		return err
 	}
 
 	defer stmt.Close()
-	fmt.Println("W3")
+
 	_, err = stmt.Exec(client.ID, client.Name, client.Email, client.CreatedAt)
-	fmt.Println(err)
+
 	if err != nil {
 		return err
 	}

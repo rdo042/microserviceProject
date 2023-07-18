@@ -55,7 +55,7 @@ func TestTransactionDBTestSuite(t *testing.T) {
 }
 
 func (s *TransactionDBTestSuite) TestCreate() {
-	transaction, err := entity.NewATransaction(s.accountFrom, s.accountTo, 100)
+	transaction, err := entity.NewTransaction(s.accountFrom, s.accountTo, 100)
 	s.Nil(err)
 	err = s.transactionDB.Create(transaction)
 
