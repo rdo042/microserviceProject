@@ -2,13 +2,37 @@ version: '3'
 
 services:
   
+  goappconsumer:
+    build: .
+    container_name: goappconsumer
+    volumes:
+      - ./goappconsumer:/app
+    ports:
+      - 3003:3003
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
   goapp:
     build: .
     container_name: goapp
     volumes:
-      - .:/app
+      - ./goapp:/app
     ports:
       - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+  mysql-consumer:
+    image: mysql:5.7
+    container_name: mysql-consumer
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: walletconsumer
+      MYSQL_PASSWORD: root
+    ports:
+      - 3307:3306
+    volumes:
+      - .docker/mysql-consumer:/var/lib/mysql
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
 
