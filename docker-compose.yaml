@@ -30,7 +30,7 @@ services:
       MYSQL_DATABASE: walletconsumer
       MYSQL_PASSWORD: root
     ports:
-      - 3307:3306
+      - 33040:3306
     volumes:
       - .docker/mysql-consumer:/var/lib/mysql
     extra_hosts:
