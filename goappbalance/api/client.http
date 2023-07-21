@@ -1,0 +1,6 @@
+POST http://localhost:3003/balances HTTP/1.1
+Content-Type: application/json
+
+{
+    "balance_id": "0276dc9e-1d30-41e9-8225-f2d251655f05"
+}

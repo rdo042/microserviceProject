@@ -1,0 +1,1 @@
+DELETE FROM balance WHERE id = '0276dc9e-1d30-41e9-8225-f2d251655f05'

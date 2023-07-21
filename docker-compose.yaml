@@ -2,13 +2,23 @@ version: '3'
 
 services:
   
+  goappbalance:
+    build: .
+    container_name: goappbalance
+    volumes:
+      - ./goappbalance:/app
+    ports:
+      - 3003:3003
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
   goappconsumer:
     build: .
     container_name: goappconsumer
     volumes:
       - ./goappconsumer:/app
     ports:
-      - 3003:3003
+      - 3005:3005
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
 
@@ -20,7 +30,7 @@ services:
     ports:
       - 8080:8080
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "host.docker.internal:172.17.0.1"     
 
   mysql-consumer:
     image: mysql:5.7
