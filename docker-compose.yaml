@@ -11,6 +11,9 @@ services:
       - 3003:3003
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
+    command: go run /app/cmd/balance/main.go
+
+  
 
   goappconsumer:
     build: .
@@ -21,6 +24,7 @@ services:
       - 3005:3005
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
+    command: go run /app/cmd/consumer/main.go
 
   goapp:
     build: .
@@ -31,6 +35,7 @@ services:
       - 8080:8080
     extra_hosts:
       - "host.docker.internal:172.17.0.1"     
+    command: go run /app/cmd/walletcore/main.go
 
   mysql-consumer:
     image: mysql:5.7
